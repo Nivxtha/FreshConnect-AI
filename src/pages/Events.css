@@ -1,0 +1,721 @@
+.events-page{
+
+  min-height:100vh;
+
+  padding:90px 8%;
+
+
+  color:white;
+
+
+  background:
+
+  radial-gradient(
+    circle at top left,
+    rgba(37,99,235,.45),
+    transparent 35%
+  ),
+
+  radial-gradient(
+    circle at bottom right,
+    rgba(124,58,237,.45),
+    transparent 35%
+  ),
+
+  #050816;
+
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+
+
+/* BACKGROUND GLOW */
+
+.events-page::before{
+
+  content:"";
+
+
+  position:absolute;
+
+
+  width:500px;
+
+  height:500px;
+
+
+  background:#06b6d4;
+
+
+  filter:blur(160px);
+
+
+  opacity:.18;
+
+
+  top:25%;
+
+  left:-200px;
+
+
+}
+
+
+
+
+
+/* HEADER */
+
+.events-header{
+
+  text-align:center;
+
+  margin-bottom:70px;
+
+
+  position:relative;
+
+  z-index:1;
+
+}
+
+
+
+.events-badge{
+
+  display:inline-flex;
+
+
+  align-items:center;
+
+
+  gap:8px;
+
+
+  padding:12px 26px;
+
+
+  border-radius:50px;
+
+
+  background:
+
+  rgba(34,211,238,.12);
+
+
+  border:
+
+  1px solid rgba(34,211,238,.4);
+
+
+  color:#67e8f9;
+
+
+  backdrop-filter:blur(20px);
+
+
+}
+
+
+
+.events-header h1{
+
+  font-size:56px;
+
+
+  margin:30px 0 15px;
+
+
+  background:
+
+  linear-gradient(
+    90deg,
+    #22d3ee,
+    #a855f7,
+    #ec4899
+  );
+
+
+  -webkit-background-clip:text;
+
+
+  color:transparent;
+
+
+}
+
+
+
+.events-header p{
+
+  max-width:720px;
+
+
+  margin:auto;
+
+
+  color:#cbd5e1;
+
+
+  font-size:18px;
+
+
+  line-height:1.8;
+
+
+}
+
+
+
+
+
+/* EVENT GRID */
+
+.event-grid{
+
+  display:grid;
+
+
+  grid-template-columns:
+
+  repeat(auto-fit,minmax(300px,1fr));
+
+
+  gap:35px;
+
+
+  position:relative;
+
+
+  z-index:2;
+
+
+}
+
+
+
+
+
+/* EVENT CARD */
+
+.event-card{
+
+  background:
+
+  rgba(255,255,255,.08);
+
+
+  backdrop-filter:blur(25px);
+
+
+  border:
+
+  1px solid rgba(255,255,255,.15);
+
+
+  border-radius:32px;
+
+
+  padding:35px;
+
+
+  transition:.4s ease;
+
+
+  position:relative;
+
+
+  overflow:hidden;
+
+
+}
+
+
+
+.event-card::before{
+
+  content:"";
+
+
+  position:absolute;
+
+
+  width:160px;
+
+  height:160px;
+
+
+  border-radius:50%;
+
+
+  background:
+
+  rgba(34,211,238,.2);
+
+
+  filter:blur(50px);
+
+
+  right:-60px;
+
+
+  top:-60px;
+
+
+}
+
+
+
+.event-card:hover{
+
+
+  transform:
+
+  translateY(-15px);
+
+
+  box-shadow:
+
+  0 30px 70px rgba(34,211,238,.25);
+
+
+  border-color:#22d3ee;
+
+
+}
+
+
+
+
+.event-top{
+
+
+  display:flex;
+
+
+  justify-content:space-between;
+
+
+  align-items:center;
+
+
+}
+
+
+
+.event-icon{
+
+
+  width:65px;
+
+
+  height:65px;
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  justify-content:center;
+
+
+  border-radius:50%;
+
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #06b6d4,
+    #8b5cf6
+  );
+
+
+  font-size:30px;
+
+
+  box-shadow:
+
+  0 0 30px rgba(6,182,212,.5);
+
+
+}
+
+
+
+.event-top span{
+
+  color:#94a3b8;
+
+}
+
+
+
+.event-card h2{
+
+  margin:28px 0;
+
+
+  font-size:26px;
+
+
+}
+
+
+
+.event-info p{
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  gap:10px;
+
+
+  color:#cbd5e1;
+
+
+}
+
+
+
+.event-info svg{
+
+  color:#22d3ee;
+
+}
+
+
+
+.description{
+
+  color:#94a3b8;
+
+
+  line-height:1.7;
+
+
+}
+
+
+
+
+
+/* REGISTER BUTTON */
+
+.event-card button{
+
+
+  width:100%;
+
+
+  padding:16px;
+
+
+  margin-top:25px;
+
+
+  border:none;
+
+
+  border-radius:35px;
+
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #06b6d4,
+    #8b5cf6
+  );
+
+
+  color:white;
+
+
+  font-weight:600;
+
+
+  font-size:16px;
+
+
+  cursor:pointer;
+
+
+  transition:.35s;
+
+
+}
+
+
+
+.event-card button:hover{
+
+
+  transform:
+
+  translateY(-4px);
+
+
+  box-shadow:
+
+  0 15px 35px rgba(139,92,246,.5);
+
+
+}
+
+
+
+
+
+/* MODAL */
+
+.modal-overlay{
+
+  position:fixed;
+
+
+  inset:0;
+
+
+  background:
+
+  rgba(0,0,0,.75);
+
+
+  backdrop-filter:blur(10px);
+
+
+  display:flex;
+
+
+  justify-content:center;
+
+
+  align-items:center;
+
+
+  z-index:999;
+
+
+}
+
+
+
+.register-modal{
+
+
+  width:420px;
+
+
+  padding:38px;
+
+
+  border-radius:32px;
+
+
+  background:
+
+  rgba(15,23,42,.95);
+
+
+  border:
+
+  1px solid rgba(255,255,255,.15);
+
+
+  animation:
+
+  popup .35s ease;
+
+
+}
+
+
+
+
+@keyframes popup{
+
+from{
+
+ transform:scale(.7);
+
+ opacity:0;
+
+}
+
+
+to{
+
+ transform:scale(1);
+
+ opacity:1;
+
+}
+
+}
+
+
+
+
+.register-modal input{
+
+
+  width:100%;
+
+
+  padding:15px;
+
+
+  margin-bottom:15px;
+
+
+  border-radius:16px;
+
+
+  border:1px solid transparent;
+
+
+  outline:none;
+
+
+  background:
+
+  rgba(255,255,255,.08);
+
+
+  color:white;
+
+
+}
+
+
+
+
+.register-modal input:focus{
+
+
+  border-color:#22d3ee;
+
+
+}
+
+
+
+
+
+.register-modal button{
+
+
+  width:100%;
+
+
+  padding:15px;
+
+
+  border:none;
+
+
+  border-radius:30px;
+
+
+  margin-top:10px;
+
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #06b6d4,
+    #8b5cf6
+  );
+
+
+  color:white;
+
+
+  cursor:pointer;
+
+
+}
+
+
+
+.close-btn{
+
+
+  background:
+
+  rgba(255,255,255,.15)!important;
+
+
+}
+
+
+
+.success-message{
+
+  text-align:center;
+
+
+  color:#4ade80;
+
+
+  margin-top:15px;
+
+
+}
+
+
+
+
+
+.no-events{
+
+  text-align:center;
+
+
+  color:#cbd5e1;
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
+
+.events-page{
+
+  padding:60px 5%;
+
+}
+
+
+
+.events-header h1{
+
+  font-size:36px;
+
+}
+
+
+
+.register-modal{
+
+  width:90%;
+
+}
+
+
+
+}

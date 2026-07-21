@@ -1,0 +1,586 @@
+/* =========================
+   CHATBOT PAGE
+========================= */
+
+
+.chatbot-page{
+
+  min-height:100vh;
+
+  padding:70px 8%;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+
+  background:
+
+  radial-gradient(
+    circle at top left,
+    rgba(236,72,153,.45),
+    transparent 30%
+  ),
+
+  radial-gradient(
+    circle at bottom right,
+    rgba(124,58,237,.45),
+    transparent 35%
+  ),
+
+  #050816;
+
+
+  color:white;
+
+}
+
+
+
+/* CHAT BOX */
+
+
+.chatbot-box{
+
+  width:480px;
+
+  height:720px;
+
+
+  display:flex;
+
+  flex-direction:column;
+
+
+  background:
+
+  rgba(255,255,255,.08);
+
+
+  backdrop-filter:blur(25px);
+
+
+  border:
+
+  1px solid rgba(255,255,255,.15);
+
+
+  border-radius:35px;
+
+
+  overflow:hidden;
+
+
+  box-shadow:
+
+  0 35px 90px rgba(0,0,0,.45);
+
+
+}
+
+
+
+
+
+/* HEADER */
+
+
+.chat-header{
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  gap:15px;
+
+
+  padding:25px;
+
+
+  background:
+
+
+  rgba(236,72,153,.15);
+
+
+  border-bottom:
+
+  1px solid rgba(255,255,255,.12);
+
+
+}
+
+
+
+.ai-avatar{
+
+
+  width:60px;
+
+
+  height:60px;
+
+
+  border-radius:50%;
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  justify-content:center;
+
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #ec4899,
+    #7c3aed
+  );
+
+
+  box-shadow:
+
+  0 0 40px rgba(236,72,153,.55);
+
+
+}
+
+
+
+.chat-header h2{
+
+
+  margin:0;
+
+
+  font-size:25px;
+
+
+}
+
+
+
+.chat-header p{
+
+
+  margin:5px 0 0;
+
+
+  color:#ddd6fe;
+
+
+  font-size:14px;
+
+
+}
+
+
+
+
+
+/* SUGGESTIONS */
+
+
+.suggestions{
+
+
+  display:flex;
+
+
+  gap:12px;
+
+
+  padding:18px;
+
+
+  overflow-x:auto;
+
+
+}
+
+
+
+.suggestions::-webkit-scrollbar{
+
+  display:none;
+
+}
+
+
+
+.suggestions button{
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  gap:7px;
+
+
+  white-space:nowrap;
+
+
+  padding:11px 18px;
+
+
+  border-radius:25px;
+
+
+  border:
+
+  1px solid rgba(255,255,255,.15);
+
+
+  cursor:pointer;
+
+
+  color:white;
+
+
+  background:
+
+
+  rgba(255,255,255,.1);
+
+
+  transition:.3s;
+
+
+}
+
+
+
+.suggestions button:hover{
+
+
+  background:
+
+  rgba(236,72,153,.35);
+
+
+  transform:
+
+  translateY(-3px);
+
+
+}
+
+
+
+
+
+/* CHAT BODY */
+
+
+.chat-body{
+
+
+  flex:1;
+
+
+  padding:22px;
+
+
+  overflow-y:auto;
+
+
+}
+
+
+
+.chat-body::-webkit-scrollbar{
+
+  width:6px;
+
+}
+
+
+.chat-body::-webkit-scrollbar-thumb{
+
+  background:#8b5cf6;
+
+  border-radius:10px;
+
+}
+
+
+
+
+
+.message{
+
+
+  display:flex;
+
+
+  align-items:flex-start;
+
+
+  gap:10px;
+
+
+  max-width:85%;
+
+
+  padding:15px 18px;
+
+
+  margin-bottom:18px;
+
+
+  border-radius:22px;
+
+
+  line-height:1.6;
+
+
+}
+
+
+
+.message.bot{
+
+
+  background:
+
+
+  rgba(255,255,255,.12);
+
+
+}
+
+
+
+.message.user{
+
+
+  margin-left:auto;
+
+
+  background:
+
+
+  linear-gradient(
+    135deg,
+    #ec4899,
+    #7c3aed
+  );
+
+
+}
+
+
+
+.message svg{
+
+
+  margin-top:4px;
+
+
+  min-width:20px;
+
+
+}
+
+
+
+
+
+.typing{
+
+
+  animation:
+
+  typing 1s infinite;
+
+
+}
+
+
+
+@keyframes typing{
+
+
+50%{
+
+opacity:.3;
+
+}
+
+
+}
+
+
+
+
+
+/* INPUT */
+
+
+.chat-input{
+
+
+  display:flex;
+
+
+  gap:12px;
+
+
+  padding:20px;
+
+
+  border-top:
+
+  1px solid rgba(255,255,255,.12);
+
+
+}
+
+
+
+.chat-input input{
+
+
+  flex:1;
+
+
+  padding:16px 22px;
+
+
+  border-radius:30px;
+
+
+  border:none;
+
+
+  outline:none;
+
+
+  background:
+
+
+  rgba(255,255,255,.12);
+
+
+  color:white;
+
+
+  font-size:15px;
+
+
+}
+
+
+
+.chat-input input::placeholder{
+
+
+  color:#ddd6fe;
+
+
+}
+
+
+
+.chat-input button{
+
+
+  width:55px;
+
+
+  height:55px;
+
+
+  border-radius:50%;
+
+
+  border:none;
+
+
+  cursor:pointer;
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  justify-content:center;
+
+
+  color:white;
+
+
+  background:
+
+
+  linear-gradient(
+    135deg,
+    #ec4899,
+    #7c3aed
+  );
+
+
+  transition:.3s;
+
+
+}
+
+
+
+.chat-input button:hover{
+
+
+  transform:
+
+  scale(1.1);
+
+
+  box-shadow:
+
+  0 0 30px rgba(236,72,153,.5);
+
+
+}
+
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:600px){
+
+
+.chatbot-page{
+
+padding:40px 5%;
+
+}
+
+
+.chatbot-box{
+
+width:100%;
+
+height:650px;
+
+}
+
+
+
+}

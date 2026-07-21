@@ -1,0 +1,152 @@
+.scroll-progress {
+
+  position:fixed;
+
+  top:0;
+
+  left:0;
+
+  height:4px;
+
+  z-index:9999;
+
+
+  background:
+
+  linear-gradient(
+
+    90deg,
+
+    #22d3ee,
+
+    #a855f7,
+
+    #ec4899
+
+  );
+
+
+  box-shadow:
+
+  0 0 15px rgba(34,211,238,.8);
+
+
+}
+
+
+
+
+
+.back-top {
+
+
+  position:fixed;
+
+
+  right:30px;
+
+
+  bottom:30px;
+
+
+  width:55px;
+
+
+  height:55px;
+
+
+  border-radius:50%;
+
+
+  border:none;
+
+
+  cursor:pointer;
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  justify-content:center;
+
+
+
+  color:white;
+
+
+
+  background:
+
+  linear-gradient(
+
+    135deg,
+
+    #22d3ee,
+
+    #a855f7
+
+  );
+
+
+
+  box-shadow:
+
+  0 0 30px rgba(168,85,247,.6);
+
+
+
+  z-index:9998;
+
+
+  transition:.3s;
+
+
+}
+
+
+
+
+.back-top:hover {
+
+
+  transform:
+
+  translateY(-8px)
+
+  scale(1.08);
+
+
+  box-shadow:
+
+  0 0 45px rgba(34,211,238,.8);
+
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
+
+.back-top {
+
+
+  width:50px;
+
+  height:50px;
+
+
+  right:20px;
+
+  bottom:20px;
+
+
+}
+
+
+}

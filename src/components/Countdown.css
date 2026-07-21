@@ -1,0 +1,130 @@
+.countdown{
+  padding:90px 8%;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.countdown::before{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  background:rgba(34,211,238,.15);
+  border-radius:50%;
+  filter:blur(90px);
+  top:-120px;
+  left:-120px;
+}
+
+.countdown::after{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  background:rgba(168,85,247,.18);
+  border-radius:50%;
+  filter:blur(90px);
+  bottom:-120px;
+  right:-120px;
+}
+
+.countdown h2{
+  font-size:48px;
+  margin-bottom:12px;
+  font-weight:700;
+  background:linear-gradient(90deg,#22d3ee,#8b5cf6,#ec4899);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.countdown p{
+  color:#94a3b8;
+  font-size:18px;
+  margin-bottom:50px;
+}
+
+.timer{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:25px;
+  max-width:900px;
+  margin:auto;
+  position:relative;
+  z-index:2;
+}
+
+.box{
+  padding:35px 20px;
+  border-radius:28px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.12);
+  transition:.35s ease;
+  box-shadow:0 15px 40px rgba(0,0,0,.18);
+}
+
+.box:hover{
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:
+    0 0 25px rgba(34,211,238,.35),
+    0 0 45px rgba(168,85,247,.30);
+}
+
+.box h1{
+  font-size:64px;
+  margin:0;
+  font-weight:800;
+  background:linear-gradient(135deg,#22d3ee,#8b5cf6);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.box span{
+  display:block;
+  margin-top:12px;
+  font-size:18px;
+  color:#cbd5e1;
+  letter-spacing:1px;
+}
+
+@media(max-width:768px){
+
+  .countdown{
+    padding:70px 5%;
+  }
+
+  .countdown h2{
+    font-size:34px;
+  }
+
+  .countdown p{
+    font-size:16px;
+  }
+
+  .timer{
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+  }
+
+  .box{
+    padding:25px 15px;
+  }
+
+  .box h1{
+    font-size:42px;
+  }
+
+  .box span{
+    font-size:15px;
+  }
+
+}
+
+@media(max-width:480px){
+
+  .timer{
+    grid-template-columns:1fr;
+  }
+
+}

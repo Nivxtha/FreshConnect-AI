@@ -1,0 +1,398 @@
+.footer {
+
+  background:
+
+  radial-gradient(
+    circle at top left,
+    rgba(34,211,238,.18),
+    transparent 35%
+  ),
+
+  radial-gradient(
+    circle at bottom right,
+    rgba(139,92,246,.2),
+    transparent 35%
+  ),
+
+  #050816;
+
+
+  color:white;
+
+  padding:60px 8% 25px;
+
+  border-top:
+
+  1px solid rgba(255,255,255,.12);
+
+}
+
+
+
+
+
+
+.footer-container {
+
+  display:grid;
+
+  grid-template-columns:
+
+  2fr 1fr 1.5fr;
+
+  gap:50px;
+
+}
+
+
+
+
+
+
+
+/* BRAND */
+
+
+.footer-logo {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-bottom:20px;
+
+}
+
+
+
+.footer-logo svg {
+
+
+  color:#22d3ee;
+
+
+  padding:8px;
+
+
+  width:50px;
+
+  height:50px;
+
+
+  border-radius:15px;
+
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #06b6d4,
+    #8b5cf6
+  );
+
+
+  box-shadow:
+
+  0 0 25px rgba(34,211,238,.5);
+
+}
+
+
+
+.footer-logo h2 {
+
+
+  font-size:26px;
+
+
+  background:
+
+  linear-gradient(
+    90deg,
+    #22d3ee,
+    #a78bfa
+  );
+
+
+  -webkit-background-clip:text;
+
+
+  color:transparent;
+
+
+}
+
+
+
+
+
+.footer-section p {
+
+
+  color:#cbd5e1;
+
+
+  line-height:1.7;
+
+
+}
+
+
+
+
+
+
+
+/* HEADINGS */
+
+
+.footer-section h3 {
+
+
+  font-size:20px;
+
+
+  margin-bottom:20px;
+
+
+  color:#67e8f9;
+
+
+}
+
+
+
+
+
+
+
+/* LINKS */
+
+
+.footer-section a {
+
+
+  display:block;
+
+
+  color:#cbd5e1;
+
+
+  text-decoration:none;
+
+
+  margin:12px 0;
+
+
+  transition:.3s;
+
+
+}
+
+
+
+.footer-section a:hover {
+
+
+  color:#22d3ee;
+
+
+  transform:translateX(6px);
+
+
+}
+
+
+
+
+
+
+
+/* CONTACT */
+
+
+.footer-section p {
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  gap:10px;
+
+
+  margin:14px 0;
+
+
+}
+
+
+
+.footer-section p svg {
+
+
+  color:#22d3ee;
+
+
+}
+
+
+
+
+
+
+
+/* SOCIAL */
+
+
+.social-icons {
+
+
+  display:flex;
+
+
+  gap:15px;
+
+
+  margin-top:20px;
+
+
+}
+
+
+
+.social-icons svg {
+
+
+  width:35px;
+
+
+  height:35px;
+
+
+  padding:8px;
+
+
+  border-radius:50%;
+
+
+  background:
+
+  rgba(255,255,255,.1);
+
+
+  cursor:pointer;
+
+
+  transition:.3s;
+
+
+}
+
+
+
+
+.social-icons svg:hover {
+
+
+  transform:translateY(-5px);
+
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #06b6d4,
+    #8b5cf6
+  );
+
+
+}
+
+
+
+
+
+
+
+/* BOTTOM */
+
+
+.footer-bottom {
+
+
+  margin-top:45px;
+
+
+  padding-top:20px;
+
+
+  border-top:
+
+  1px solid rgba(255,255,255,.12);
+
+
+  display:flex;
+
+
+  justify-content:center;
+
+
+  align-items:center;
+
+
+  gap:8px;
+
+
+  color:#94a3b8;
+
+
+}
+
+
+
+
+
+.footer-bottom svg {
+
+
+  color:#22d3ee;
+
+
+}
+
+
+
+
+
+
+
+@media(max-width:768px){
+
+
+.footer-container {
+
+
+  grid-template-columns:1fr;
+
+
+  gap:35px;
+
+
+}
+
+
+
+.footer {
+
+
+padding:50px 5% 25px;
+
+}
+
+
+}
