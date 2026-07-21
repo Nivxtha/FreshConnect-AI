@@ -30,7 +30,7 @@ function Events() {
   useEffect(()=>{
 
 
-    fetch("http://localhost:5000/events")
+    fetch("https://freshconnect-ai-17k6.onrender.com/events")
 
     .then((res)=>res.json())
 

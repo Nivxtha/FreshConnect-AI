@@ -24,7 +24,7 @@ function Clubs() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/clubs")
+    fetch("https://freshconnect-ai-17k6.onrender.com/clubs")
       .then((res) => res.json())
       .then((data) => {
         setClubs(data);
