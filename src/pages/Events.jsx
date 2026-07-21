@@ -35,7 +35,7 @@ function Events() {
     .then((res)=>res.json())
 
     .then((data)=>{
-
+      console.log("Events API:", data);
       setEvents(data);
 
     })

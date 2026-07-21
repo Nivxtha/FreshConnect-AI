@@ -128,7 +128,7 @@ function Chatbot(){
 
       const response = await fetch(
 
-        "https://fresh-connect-ai-17k6.onrender.com/ask-ai"
+        "https://fresh-connect-ai-17k6.onrender.com/ask-ai",
 
         {
 
