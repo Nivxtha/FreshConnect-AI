@@ -78,9 +78,7 @@ function Events() {
 
 
       const response = await fetch(
-
-        "http://localhost:5000/register",
-
+         "https://freshconnect-ai-17k6.onrender.com/register",
         {
 
           method:"POST",
@@ -307,7 +305,7 @@ function Events() {
 
               <h2>
 
-                {event.event_name}
+                {event.title}
 
               </h2>
 
@@ -330,7 +328,7 @@ function Events() {
 
                     new Date(
 
-                      event.event_date
+                      event.date
 
                     ).toLocaleDateString()
 
@@ -385,7 +383,7 @@ function Events() {
 
                   setSelectedEvent(
 
-                    event.event_name
+                    event.title
 
                   );
 
