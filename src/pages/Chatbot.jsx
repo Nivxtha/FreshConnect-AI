@@ -9,62 +9,39 @@ import {
 } from "lucide-react";
 
 
-
 function Chatbot(){
-
 
   const [question,setQuestion] = useState("");
 
-
   const [loading,setLoading] = useState(false);
-
-
 
   const chatEndRef = useRef(null);
 
 
-
-
   const [messages,setMessages] = useState([
 
-
     {
-
       sender:"bot",
-
       text:
       "Hi 👋 I am FreshConnect AI Assistant. Ask me anything about campus events, clubs, faculty or timetable!"
-
     }
 
-
   ]);
-
-
-
 
 
 
   const suggestions = [
 
     "Upcoming events",
-
     "Available clubs",
-
     "Faculty details",
-
     "Today's timetable"
 
   ];
 
 
 
-
-
-
-
   useEffect(()=>{
-
 
     chatEndRef.current?.scrollIntoView({
 
@@ -72,12 +49,7 @@ function Chatbot(){
 
     });
 
-
   },[messages,loading]);
-
-
-
-
 
 
 
@@ -86,14 +58,10 @@ function Chatbot(){
   const sendMessage = async(text)=>{
 
 
-    const userQuestion =
-    text || question;
-
+    const userQuestion = text || question;
 
 
     if(!userQuestion.trim()) return;
-
-
 
 
 
@@ -102,11 +70,8 @@ function Chatbot(){
       ...prev,
 
       {
-
         sender:"user",
-
         text:userQuestion
-
       }
 
     ]);
@@ -119,16 +84,12 @@ function Chatbot(){
 
 
 
-
-
-
-
     try{
 
 
       const response = await fetch(
 
-        "https://fresh-connect-ai-17k6.onrender.com/ask-ai",
+        "http://localhost:5000/ask-ai",
 
         {
 
@@ -154,14 +115,7 @@ function Chatbot(){
 
 
 
-
-
-
-
-      const data =
-      await response.json();
-
-
+      const data = await response.json();
 
 
 
@@ -181,9 +135,7 @@ function Chatbot(){
 
         }
 
-
       ]);
-
 
 
 
@@ -191,6 +143,9 @@ function Chatbot(){
 
 
     catch(error){
+
+
+      console.log(error);
 
 
       setMessages((prev)=>[
@@ -205,11 +160,11 @@ function Chatbot(){
 
         }
 
-
       ]);
 
 
     }
+
 
     finally{
 
@@ -228,20 +183,12 @@ function Chatbot(){
 
 
 
-
-
-
-
   return (
 
     <div className="chatbot-page">
 
 
-
       <div className="chatbot-box">
-
-
-
 
 
 
@@ -257,18 +204,13 @@ function Chatbot(){
 
           <div>
 
-
             <h2>
-
               FreshConnect AI
-
             </h2>
 
 
             <p>
-
               Online Campus Assistant
-
             </p>
 
 
@@ -282,15 +224,12 @@ function Chatbot(){
 
 
 
-
-
         <div className="suggestions">
 
 
           {
 
             suggestions.map((item,index)=>(
-
 
               <button
 
@@ -314,7 +253,6 @@ function Chatbot(){
 
 
         </div>
-
 
 
 
@@ -351,6 +289,7 @@ function Chatbot(){
               >
 
 
+
                 {
 
                   msg.sender==="bot"
@@ -366,11 +305,13 @@ function Chatbot(){
                 }
 
 
+
                 <span>
 
                   {msg.text}
 
                 </span>
+
 
 
               </div>
@@ -379,6 +320,7 @@ function Chatbot(){
             ))
 
           }
+
 
 
 
@@ -412,15 +354,10 @@ function Chatbot(){
 
 
 
-
-
           <div ref={chatEndRef}/>
 
 
-
         </div>
-
-
 
 
 
@@ -454,7 +391,6 @@ function Chatbot(){
 
 
 
-
           <button onClick={()=>sendMessage()}>
 
             <Send size={20}/>
@@ -474,7 +410,6 @@ function Chatbot(){
     </div>
 
   );
-
 
 }
 

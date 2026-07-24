@@ -1,4 +1,4 @@
-ï»¿import express from "express";
+import express from "express";
 import cors from "cors";
 import mysql from "mysql2";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -19,10 +19,15 @@ app.use(express.json());
 // ================= GEMINI =================
 
 
-if (process.env.GEMINI_API_KEY) {
-    console.log("âœ… Gemini API Key Loaded");
-} else {
-    console.log("âŒ Gemini API Key Missing");
+if(process.env.GEMINI_API_KEY){
+
+    console.log("Ô£à Gemini API Key Loaded");
+
+}
+else{
+
+    console.log("ÔØî Gemini API Key Missing");
+
 }
 
 
@@ -49,31 +54,39 @@ const model = genAI.getGenerativeModel({
 
 const db = mysql.createConnection({
 
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    host:"localhost",
+
+    user:"root",
+
+    password:"shrinithinivetha",
+
+    database:"freshconnectdb"
 
 });
 
-db.connect((err) => {
 
-    if (err) {
 
-        console.log("âŒ Railway MySQL Connection Failed");
+
+
+db.connect((err)=>{
+
+
+    if(err){
+
+        console.log("ÔØî MySQL Connection Failed");
+
         console.log(err.message);
-
-    } else {
-
-        console.log("âœ… Railway MySQL Connected Successfully");
 
     }
 
+    else{
+
+        console.log("Ô£à MySQL Connected Successfully");
+
+    }
+
+
 });
-
-
-
 
 
 
@@ -83,8 +96,10 @@ db.connect((err) => {
 // ================= HOME =================
 
 
-app.get("/", (req, res) => {
-    res.send("ðŸš€ FreshConnect Backend Running");
+app.get("/",(req,res)=>{
+
+    res.send("­ƒÜÇ FreshConnect Backend Running");
+
 });
 
 
@@ -173,7 +188,7 @@ answer
 catch(error){
 
 
-console.log("ðŸ”¥ Gemini Error");
+console.log("­ƒöÑ Gemini Error");
 
 console.log(error.message);
 
@@ -198,7 +213,8 @@ if(q.includes("event")){
 
 
 answer =
-"ðŸ“… FreshConnect campus events include workshops, hackathons, seminars and cultural activities. Visit the Events section to register for upcoming events.";
+"­ƒôà FreshConnect campus events include workshops, hackathons, seminars and cultural activities. Visit the Events section to register for upcoming events.";
+
 }
 
 
@@ -207,7 +223,7 @@ else if(q.includes("club")){
 
 
 answer =
-"Â­Æ’Ã„Â» FreshConnect provides different student clubs including technical, AI, coding and cultural clubs. Check the Clubs section for details.";
+"­ƒÄ» FreshConnect provides different student clubs including technical, AI, coding and cultural clubs. Check the Clubs section for details.";
 
 }
 
@@ -217,7 +233,8 @@ else if(q.includes("faculty")){
 
 
 answer =
-"ðŸŽ¯ FreshConnect provides different faculty members and their details in the Faculty section. You can view faculty name, department and email details.";
+"­ƒæ¿ÔÇì­ƒÅ½ Faculty information is available in the Faculty section. You can view faculty name, department and email details.";
+
 }
 
 
@@ -226,7 +243,8 @@ else if(q.includes("timetable")){
 
 
 answer =
-"ðŸ“š You can find your class schedule in the Timetable section of FreshConnect.";
+"­ƒôÜ You can find your class schedule in the Timetable section of FreshConnect.";
+
 }
 
 
@@ -235,7 +253,8 @@ else{
 
 
 answer =
-"ðŸ‘‹ Hi! I am FreshConnect AI Assistant. I can help you with events, clubs, faculty and timetable.";
+"­ƒæï Hi! I am FreshConnect AI Assistant. I can help you with events, clubs, faculty and timetable.";
+
 }
 
 
@@ -429,7 +448,7 @@ res.json(result);
 app.post("/register",(req,res)=>{
 
 
-console.log("ðŸ”¥ REGISTER ROUTE HIT");
+console.log("­ƒöÑ REGISTER ROUTE HIT");
 
 
 console.log(req.body);
@@ -502,7 +521,7 @@ email
 
 if(err){
 
-console.log("âŒ MYSQL INSERT ERROR");
+console.log("ÔØî MYSQL INSERT ERROR");
 
 console.log(err.message);
 
@@ -520,7 +539,7 @@ message:err.message
 
 
 
-console.log("âœ… Registration Saved");
+console.log("Ô£à Registration Saved");
 
 
 
@@ -559,5 +578,5 @@ id:result.insertId
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`ðŸš€ Server running on port ${PORT}`);
+  console.log(`­ƒÜÇ Server running on port ${PORT}`);
 });
