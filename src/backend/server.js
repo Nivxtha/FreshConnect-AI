@@ -14,7 +14,7 @@ app.use(cors({
     origin: [
         "http://localhost:5173",
         "http://localhost:5175",
-        "https://fresh-connect-ai.vercel.app"
+        "https://fresh-connect-ai-3a6m.vercel.app"
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"]
@@ -45,13 +45,15 @@ const model = genAI.getGenerativeModel({
 // Environment Variables in your Render dashboard.
 
 const db = mysql.createConnection({
-    host: process.env.DB_HOST || "localhost",
-    user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "shrinithinivetha",
-    database: process.env.DB_NAME || "freshconnectdb",
-    port: process.env.DB_PORT || 3306
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    ssl: {
+        rejectUnauthorized: true
+    }
 });
-
 db.connect((err) => {
     if (err) {
         console.log("❌ MySQL Connection Failed");
