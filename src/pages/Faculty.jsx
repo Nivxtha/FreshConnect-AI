@@ -26,7 +26,7 @@ function Faculty() {
   useEffect(() => {
 
 
-    fetch("http://localhost:5000/faculty")
+    fetch("https://freshconnect-ai-17k6.onrender.com/faculty")
 
       .then((response) => {
 
@@ -81,7 +81,7 @@ function Faculty() {
 
     return (
 
-      item.faculty_name
+      item.name
         ?.toLowerCase()
         .includes(search.toLowerCase())
 
@@ -231,7 +231,7 @@ function Faculty() {
 
                 <h2>
 
-                  {member.faculty_name}
+                  {member.name}
 
                 </h2>
 
