@@ -21,12 +21,12 @@ app.use(express.json());
 
 if(process.env.GEMINI_API_KEY){
 
-    console.log("Ô£à Gemini API Key Loaded");
+    console.log("Ô£ï¿½ Gemini API Key Loaded");
 
 }
 else{
 
-    console.log("ÔØî Gemini API Key Missing");
+    console.log("ï¿½ï¿½ï¿½ Gemini API Key Missing");
 
 }
 
@@ -53,15 +53,14 @@ const model = genAI.getGenerativeModel({
 
 
 const db = mysql.createConnection({
-
-    host:"localhost",
-
-    user:"root",
-
-    password:"shrinithinivetha",
-
-    database:"freshconnectdb"
-
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    ssl: {
+        rejectUnauthorized: true
+    }
 });
 
 
@@ -73,7 +72,7 @@ db.connect((err)=>{
 
     if(err){
 
-        console.log("ÔØî MySQL Connection Failed");
+        console.log("ï¿½ï¿½ï¿½ MySQL Connection Failed");
 
         console.log(err.message);
 
@@ -81,7 +80,7 @@ db.connect((err)=>{
 
     else{
 
-        console.log("Ô£à MySQL Connected Successfully");
+        console.log("Ô£ï¿½ MySQL Connected Successfully");
 
     }
 
@@ -98,7 +97,7 @@ db.connect((err)=>{
 
 app.get("/",(req,res)=>{
 
-    res.send("­ƒÜÇ FreshConnect Backend Running");
+    res.send("ï¿½ï¿½ï¿½ï¿½ FreshConnect Backend Running");
 
 });
 
@@ -188,7 +187,7 @@ answer
 catch(error){
 
 
-console.log("­ƒöÑ Gemini Error");
+console.log("ï¿½ï¿½ï¿½ï¿½ Gemini Error");
 
 console.log(error.message);
 
@@ -213,7 +212,7 @@ if(q.includes("event")){
 
 
 answer =
-"­ƒôà FreshConnect campus events include workshops, hackathons, seminars and cultural activities. Visit the Events section to register for upcoming events.";
+"ï¿½ï¿½ï¿½ï¿½ FreshConnect campus events include workshops, hackathons, seminars and cultural activities. Visit the Events section to register for upcoming events.";
 
 }
 
@@ -223,7 +222,7 @@ else if(q.includes("club")){
 
 
 answer =
-"­ƒÄ» FreshConnect provides different student clubs including technical, AI, coding and cultural clubs. Check the Clubs section for details.";
+"ï¿½ï¿½Ä» FreshConnect provides different student clubs including technical, AI, coding and cultural clubs. Check the Clubs section for details.";
 
 }
 
@@ -233,7 +232,7 @@ else if(q.includes("faculty")){
 
 
 answer =
-"­ƒæ¿ÔÇì­ƒÅ½ Faculty information is available in the Faculty section. You can view faculty name, department and email details.";
+"ï¿½ï¿½ï¿½ï¿½ï¿½ì­ƒÅ½ Faculty information is available in the Faculty section. You can view faculty name, department and email details.";
 
 }
 
@@ -243,7 +242,7 @@ else if(q.includes("timetable")){
 
 
 answer =
-"­ƒôÜ You can find your class schedule in the Timetable section of FreshConnect.";
+"ï¿½ï¿½ï¿½ï¿½ You can find your class schedule in the Timetable section of FreshConnect.";
 
 }
 
@@ -253,7 +252,7 @@ else{
 
 
 answer =
-"­ƒæï Hi! I am FreshConnect AI Assistant. I can help you with events, clubs, faculty and timetable.";
+"ï¿½ï¿½ï¿½ï¿½ Hi! I am FreshConnect AI Assistant. I can help you with events, clubs, faculty and timetable.";
 
 }
 
@@ -448,7 +447,7 @@ res.json(result);
 app.post("/register",(req,res)=>{
 
 
-console.log("­ƒöÑ REGISTER ROUTE HIT");
+console.log("ï¿½ï¿½ï¿½ï¿½ REGISTER ROUTE HIT");
 
 
 console.log(req.body);
@@ -521,7 +520,7 @@ email
 
 if(err){
 
-console.log("ÔØî MYSQL INSERT ERROR");
+console.log("ï¿½ï¿½ï¿½ MYSQL INSERT ERROR");
 
 console.log(err.message);
 
@@ -539,7 +538,7 @@ message:err.message
 
 
 
-console.log("Ô£à Registration Saved");
+console.log("Ô£ï¿½ Registration Saved");
 
 
 
@@ -578,5 +577,5 @@ id:result.insertId
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`­ƒÜÇ Server running on port ${PORT}`);
+  console.log(`ï¿½ï¿½ï¿½ï¿½ Server running on port ${PORT}`);
 });

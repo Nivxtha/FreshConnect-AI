@@ -35,7 +35,7 @@ const genAI = new GoogleGenerativeAI(
 
 const model = genAI.getGenerativeModel({
 
-    model:"gemini-2.0-flash"
+    model: "gemini-2.0-flash"
 
 });
 
@@ -44,12 +44,11 @@ const model = genAI.getGenerativeModel({
 
 
 
-// ================= MYSQL =================
+// ================= MYSQL (POOL) =================
 
-
-// ================= MYSQL =================
 
 const db = mysql.createPool({
+
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
@@ -61,22 +60,33 @@ const db = mysql.createPool({
     ssl: {
         rejectUnauthorized: true
     }
+
 });
 
-// Pool ready-ah irukka nu test pannunga
+
+// Test the pool once at startup
 db.getConnection((err, connection) => {
+
     if (err) {
+
         console.log("❌ Railway MySQL Connection Failed");
         console.log(err.message);
+
     } else {
+
         console.log("✅ Railway MySQL Connected Successfully");
         connection.release();
+
     }
+
 });
 
-// IMPORTANT: idle connection drop aana crash aagama irukka
+
+// Prevents server crash on idle/dropped connections
 db.on("error", (err) => {
+
     console.log("⚠️ MySQL Pool Error:", err.message);
+
 });
 
 
@@ -105,31 +115,31 @@ app.get("/", (req, res) => {
 // ================= AI CHATBOT =================
 
 
-app.post("/ask-ai",async(req,res)=>{
+app.post("/ask-ai", async (req, res) => {
 
 
-try{
+    try {
 
 
-const {question}=req.body;
-
-
-
-if(!question){
-
-return res.status(400).json({
-
-error:"Question required"
-
-});
-
-}
+        const { question } = req.body;
 
 
 
+        if (!question) {
+
+            return res.status(400).json({
+
+                error: "Question required"
+
+            });
+
+        }
 
 
-const prompt = `
+
+
+
+        const prompt = `
 
 You are FreshConnect AI Assistant.
 
@@ -157,106 +167,106 @@ Answer simply.
 
 
 
-const result = await model.generateContent(prompt);
+        const result = await model.generateContent(prompt);
 
 
 
-const answer = result.response.text();
+        const answer = result.response.text();
 
 
 
-res.json({
+        res.json({
 
-answer
+            answer
 
-});
+        });
 
 
 
-}
+    }
 
 
 
-catch(error){
+    catch (error) {
 
 
-console.log("🔥 Gemini Error");
+        console.log("🔥 Gemini Error");
 
-console.log(error.message);
+        console.log(error.message);
 
 
 
 
 
-// FALLBACK RESPONSE
+        // FALLBACK RESPONSE
 
 
 
-const q = req.body.question.toLowerCase();
+        const q = req.body.question.toLowerCase();
 
 
 
-let answer="";
+        let answer = "";
 
 
 
 
-if(q.includes("event")){
+        if (q.includes("event")) {
 
 
-answer =
-"📅 FreshConnect campus events include workshops, hackathons, seminars and cultural activities. Visit the Events section to register for upcoming events.";
-}
+            answer =
+                "📅 FreshConnect campus events include workshops, hackathons, seminars and cultural activities. Visit the Events section to register for upcoming events.";
+        }
 
 
 
-else if(q.includes("club")){
+        else if (q.includes("club")) {
 
 
-answer =
-"­ƒÄ» FreshConnect provides different student clubs including technical, AI, coding and cultural clubs. Check the Clubs section for details.";
+            answer =
+                "🎯 FreshConnect provides different student clubs including technical, AI, coding and cultural clubs. Check the Clubs section for details.";
 
-}
+        }
 
 
 
-else if(q.includes("faculty")){
+        else if (q.includes("faculty")) {
 
 
-answer =
-"🎯 FreshConnect provides different faculty members and their details in the Faculty section. You can view faculty name, department and email details.";
-}
+            answer =
+                "👨‍🏫 Faculty information is available in the Faculty section. You can view faculty name, department and email details.";
+        }
 
 
 
-else if(q.includes("timetable")){
+        else if (q.includes("timetable")) {
 
 
-answer =
-"📚 You can find your class schedule in the Timetable section of FreshConnect.";
-}
+            answer =
+                "📚 You can find your class schedule in the Timetable section of FreshConnect.";
+        }
 
 
 
-else{
+        else {
 
 
-answer =
-"👋 Hi! I am FreshConnect AI Assistant. I can help you with events, clubs, faculty and timetable.";
-}
+            answer =
+                "👋 Hi! I am FreshConnect AI Assistant. I can help you with events, clubs, faculty and timetable.";
+        }
 
 
 
 
-res.json({
+        res.json({
 
-answer
+            answer
 
-});
+        });
 
 
 
-}
+    }
 
 
 
@@ -273,31 +283,31 @@ answer
 // ================= EVENTS =================
 
 
-app.get("/events",(req,res)=>{
+app.get("/events", (req, res) => {
 
 
-db.query(
+    db.query(
 
-"SELECT * FROM events",
+        "SELECT * FROM events",
 
-(err,result)=>{
-
-
-if(err){
-
-return res.status(500).json({
-
-error:err.message
-
-});
-
-}
+        (err, result) => {
 
 
-res.json(result);
+            if (err) {
+
+                return res.status(500).json({
+
+                    error: err.message
+
+                });
+
+            }
 
 
-});
+            res.json(result);
+
+
+        });
 
 
 });
@@ -313,31 +323,31 @@ res.json(result);
 // ================= CLUBS =================
 
 
-app.get("/clubs",(req,res)=>{
+app.get("/clubs", (req, res) => {
 
 
-db.query(
+    db.query(
 
-"SELECT * FROM clubs",
+        "SELECT * FROM clubs",
 
-(err,result)=>{
-
-
-if(err){
-
-return res.status(500).json({
-
-error:err.message
-
-});
-
-}
+        (err, result) => {
 
 
-res.json(result);
+            if (err) {
+
+                return res.status(500).json({
+
+                    error: err.message
+
+                });
+
+            }
 
 
-});
+            res.json(result);
+
+
+        });
 
 
 });
@@ -353,31 +363,31 @@ res.json(result);
 // ================= FACULTY =================
 
 
-app.get("/faculty",(req,res)=>{
+app.get("/faculty", (req, res) => {
 
 
-db.query(
+    db.query(
 
-"SELECT * FROM faculty",
+        "SELECT * FROM faculty",
 
-(err,result)=>{
-
-
-if(err){
-
-return res.status(500).json({
-
-error:err.message
-
-});
-
-}
+        (err, result) => {
 
 
-res.json(result);
+            if (err) {
+
+                return res.status(500).json({
+
+                    error: err.message
+
+                });
+
+            }
 
 
-});
+            res.json(result);
+
+
+        });
 
 
 });
@@ -393,31 +403,31 @@ res.json(result);
 // ================= TIMETABLE =================
 
 
-app.get("/timetable",(req,res)=>{
+app.get("/timetable", (req, res) => {
 
 
-db.query(
+    db.query(
 
-"SELECT * FROM timetable",
+        "SELECT * FROM timetable",
 
-(err,result)=>{
-
-
-if(err){
-
-return res.status(500).json({
-
-error:err.message
-
-});
-
-}
+        (err, result) => {
 
 
-res.json(result);
+            if (err) {
+
+                return res.status(500).json({
+
+                    error: err.message
+
+                });
+
+            }
 
 
-});
+            res.json(result);
+
+
+        });
 
 
 });
@@ -433,48 +443,48 @@ res.json(result);
 // ================= EVENT REGISTRATION =================
 
 
-app.post("/register",(req,res)=>{
+app.post("/register", (req, res) => {
 
 
-console.log("🔥 REGISTER ROUTE HIT");
+    console.log("🔥 REGISTER ROUTE HIT");
 
 
-console.log(req.body);
-
-
-
-const {
-
-name,
-
-email,
-
-event
-
-}=req.body;
+    console.log(req.body);
 
 
 
+    const {
 
+        name,
 
-if(!name || !email || !event){
+        email,
 
+        event
 
-return res.status(400).json({
-
-message:"Missing registration details"
-
-});
-
-
-}
+    } = req.body;
 
 
 
 
 
+    if (!name || !email || !event) {
 
-const sql = `
+
+        return res.status(400).json({
+
+            message: "Missing registration details"
+
+        });
+
+
+    }
+
+
+
+
+
+
+    const sql = `
 
 INSERT INTO registrations
 
@@ -489,68 +499,79 @@ VALUES(?,?,?)
 
 
 
-db.query(
+    db.query(
 
-sql,
+        sql,
 
-[
+        [
 
-name,
+            name,
 
-event,
+            event,
 
-email
+            email
 
-],
-
-
-(err,result)=>{
+        ],
 
 
-if(err){
-
-console.log("❌ MYSQL INSERT ERROR");
-
-console.log(err.message);
+        (err, result) => {
 
 
-return res.status(500).json({
+            if (err) {
 
-message:err.message
+                console.log("❌ MYSQL INSERT ERROR");
+
+                console.log(err.message);
+
+
+                return res.status(500).json({
+
+                    message: err.message
+
+                });
+
+
+            }
+
+
+
+
+
+            console.log("✅ Registration Saved");
+
+
+
+            res.json({
+
+                message: "Registration Successful",
+
+                id: result.insertId
+
+            });
+
+
+
+        }
+
+
+
+    );
+
 
 });
 
 
-}
 
+// ================= PROCESS-LEVEL SAFETY NET =================
+// Prevents unrelated unhandled errors from crashing the whole server
 
-
-
-
-console.log("✅ Registration Saved");
-
-
-
-res.json({
-
-message:"Registration Successful",
-
-id:result.insertId
-
+process.on("uncaughtException", (err) => {
+    console.log("⚠️ Uncaught Exception:", err.message);
 });
 
-
-
-}
-
-
-
-);
-
-
+process.on("unhandledRejection", (err) => {
+    console.log("⚠️ Unhandled Rejection:", err.message);
 });
-
-
 
 
 
