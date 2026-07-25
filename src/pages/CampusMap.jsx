@@ -4,7 +4,7 @@ function CampusMap() {
       <h2>Campus Virtual Map</h2>
       <iframe
         title="Campus Map"
-        src="https://www.google.com/maps/embed?pb=YOUR_EMBED_CODE_HERE"
+        src="https://www.google.com/maps?q=Saranathan+College+of+Engineering,+Trichy&output=embed"
         width="100%"
         height="500"
         style={{ border: 0, borderRadius: "10px" }}
