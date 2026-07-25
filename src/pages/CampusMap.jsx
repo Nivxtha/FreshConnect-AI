@@ -11,12 +11,54 @@ function CampusMap() {
     { name: "Main Entrance", desc: "Trichy - Madurai Highway", x: 300, y: 340, w: 200, h: 70, color: "#D3D1C7" },
   ];
 
+  const openLiveNavigation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          const url = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=10.7559647,78.6513248&travelmode=driving`;
+          window.open(url, "_blank");
+        },
+        () => {
+          // Fallback if user denies location permission
+          window.open(
+            "https://www.google.com/maps/dir/?api=1&destination=10.7559647,78.6513248",
+            "_blank"
+          );
+        }
+      );
+    } else {
+      window.open(
+        "https://www.google.com/maps/dir/?api=1&destination=10.7559647,78.6513248",
+        "_blank"
+      );
+    }
+  };
+
   return (
     <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
       <h2 style={{ textAlign: "center", marginBottom: "6px" }}>Campus Layout</h2>
       <p style={{ textAlign: "center", color: "#666", fontSize: "13px", marginBottom: "16px" }}>
         Saranathan College of Engineering, Panjappur, Trichy
       </p>
+
+      <div style={{ textAlign: "center", marginBottom: "16px" }}>
+        <button
+          onClick={openLiveNavigation}
+          style={{
+            background: "#1a73e8",
+            color: "#fff",
+            border: "none",
+            padding: "10px 20px",
+            borderRadius: "8px",
+            fontSize: "14px",
+            fontWeight: "600",
+            cursor: "pointer",
+          }}
+        >
+          Navigate to Campus (Live)
+        </button>
+      </div>
 
       <svg viewBox="0 0 560 430" width="100%" style={{ border: "1px solid #e0e0e0", borderRadius: "10px" }}>
         {blocks.map((b, i) => (
@@ -55,14 +97,7 @@ function CampusMap() {
       </svg>
 
       <p style={{ textAlign: "center", fontSize: "12px", color: "#888", marginTop: "10px" }}>
-        Layout is a simplified guide, not to scale. For live navigation, use the{" "}
-        <a
-          href="https://www.google.com/maps?q=Saranathan+College+of+Engineering,+Trichy"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Google Maps location
-        </a>.
+        Tap "Navigate to Campus" for turn-by-turn live directions from your current location.
       </p>
     </div>
   );
