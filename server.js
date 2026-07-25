@@ -47,32 +47,36 @@ const model = genAI.getGenerativeModel({
 // ================= MYSQL =================
 
 
-const db = mysql.createConnection({
+// ================= MYSQL =================
 
+const db = mysql.createPool({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
     ssl: {
         rejectUnauthorized: true
     }
-
 });
 
-db.connect((err) => {
-
+// Pool ready-ah irukka nu test pannunga
+db.getConnection((err, connection) => {
     if (err) {
-
         console.log("❌ Railway MySQL Connection Failed");
         console.log(err.message);
-
     } else {
-
         console.log("✅ Railway MySQL Connected Successfully");
-
+        connection.release();
     }
+});
 
+// IMPORTANT: idle connection drop aana crash aagama irukka
+db.on("error", (err) => {
+    console.log("⚠️ MySQL Pool Error:", err.message);
 });
 
 
