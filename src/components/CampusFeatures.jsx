@@ -272,6 +272,31 @@ function ChatChips() {
   const [reply, setReply] = useState(
     "Ask me anything about campus — or tap a suggestion below."
   );
+  const [loading, setLoading] = useState(false);
+
+  const askAI = async (question) => {
+    setLoading(true);
+    setReply("Thinking...");
+
+    try {
+      const response = await fetch(
+        "https://freshconnect-ai-17k6.onrender.com/ask-ai",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question }),
+        }
+      );
+
+      const data = await response.json();
+      setReply(data.answer || "Sorry, I couldn't find an answer.");
+    } catch (error) {
+      console.log(error);
+      setReply("❌ Unable to connect with AI server.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="card chat-card">
@@ -282,9 +307,8 @@ function ChatChips() {
           <div
             key={i}
             className="chip"
-            onClick={() =>
-              setReply(`You asked: "${s}" — (connect this to your AI backend)`)
-            }
+            onClick={() => !loading && askAI(s)}
+            style={{ opacity: loading ? 0.6 : 1, pointerEvents: loading ? "none" : "auto" }}
           >
             {s}
           </div>
