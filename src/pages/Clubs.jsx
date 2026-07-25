@@ -101,12 +101,12 @@ function Clubs() {
                 <span>Club #{index + 1}</span>
               </div>
 
-              <h2>{club.club_name}</h2>
+              <h2>{club.name}</h2>
 
               <p>{club.description}</p>
 
               <button
-                onClick={() => openPopup(club.club_name)}
+                onClick={() => openPopup(club.name)}
               >
                 Join Club 🚀
               </button>
